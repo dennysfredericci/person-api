@@ -1,9 +1,9 @@
-#Person Api
+# Person Api
 
 This is a contract-driven project, here we have just the contract definition to enable the front-end and back-end development in parallel.
 
 
-##Running Stubs(Mock)
+## Running Stubs(Mock)
 
 Go to your shell in this project directory and execute the command below:
 
@@ -14,7 +14,7 @@ Now you can check the contract using postman, your browser or any other tool.
 In this example just access the URL http://localhost:8080/person/1
 
  
-##Running Tests
+## Running Tests
 
 
 Go to your shell in this project directory and execute the command below:
