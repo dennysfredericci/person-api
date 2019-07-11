@@ -1,0 +1,19 @@
+description: Represents a successful scenario of getting a person by id
+
+request:
+  method: GET
+  url: /person/1
+
+response:
+  status: 200
+  body: |
+    {
+       "surname":"Fredericci",
+       "name":"Dennys",
+       "id":1
+    }
+
+
+  headers:
+    Content-Type: application/json;charset=UTF-8
+

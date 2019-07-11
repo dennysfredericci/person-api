@@ -1,0 +1,16 @@
+person: &person
+  name: ${faker.name.firstName}
+  surname: ${faker.name.lastName}
+
+
+
+#author:
+#  id: ${sequence.number}
+#  name: Ernest Hemingway
+#  introduction: ${faker.lorem.paragraph}
+#  birth: July 21, 1899
+#  gender: MALE
+#  works:
+#    - <<: *person
+#    - <<: *person
+#    - <<: *person

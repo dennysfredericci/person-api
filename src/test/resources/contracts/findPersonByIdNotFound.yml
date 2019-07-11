@@ -1,0 +1,8 @@
+description: Represents a successful scenario of getting a person by id
+
+request:
+  method: GET
+  url: /person/2
+
+response:
+  status: 404
