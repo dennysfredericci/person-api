@@ -15,6 +15,10 @@ Now you can check the contract using postman, your browser or any other tool.
 
 In this example just access the URL http://localhost:8080/person/1
 
+## Creating Docker Image
+
+mvn dockerfile:push -Ddockerfile.username=fredericci -Ddocker.user=XXXX -Ddocker.password=XXXXX
+
  
 ## Running Tests
 
