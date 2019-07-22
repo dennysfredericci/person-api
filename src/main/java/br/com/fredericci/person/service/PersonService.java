@@ -3,13 +3,14 @@ package br.com.fredericci.person.service;
 import br.com.fredericci.person.exception.NotFoundException;
 import br.com.fredericci.person.model.Person;
 import br.com.fredericci.person.repository.PersonRepository;
-import io.beanmother.core.ObjectMother;
+import br.com.six2six.fixturefactory.Fixture;
+import br.com.six2six.fixturefactory.Rule;
+import java.io.IOException;
+import java.util.stream.IntStream;
+import javax.annotation.PostConstruct;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.PostConstruct;
-import java.util.stream.IntStream;
 
 @Service
 public class PersonService {
@@ -32,11 +33,15 @@ public class PersonService {
     }
 
     @PostConstruct
-    public void loadDatabase() {
+    public void loadDatabase() throws IOException {
 
-        final ObjectMother objectMother = ObjectMother.getInstance();
+        Fixture.of(Person.class).addTemplate("valid", new Rule() {{
+            add("id", random(Long.class));
+            add("name", firstName());
+            add("surname", lastName());
+        }});
 
-        IntStream.range(1, 100).forEach((number) -> personRepository.save(objectMother.bear("person", Person.class)));
+        IntStream.range(1, 100).forEach((number) -> personRepository.save(Fixture.from(Person.class).gimme("valid")));
 
     }
 
