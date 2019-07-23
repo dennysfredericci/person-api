@@ -41,7 +41,7 @@ public class PersonService {
             add("surname", lastName());
         }});
 
-        IntStream.range(1, 100).forEach((number) -> personRepository.save(Fixture.from(Person.class).gimme("valid")));
+        IntStream.range(1, 10).forEach((number) -> personRepository.save(Fixture.from(Person.class).gimme("valid")));
 
     }
 
