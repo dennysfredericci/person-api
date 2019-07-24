@@ -1,6 +1,8 @@
 # Person Api
 
-This is a contract-driven project, here we have just the contract definition to enable the front-end and back-end development in parallel.
+1 - This is a contract-driven project, here we have just the contract definition to enable the front-end and back-end development in parallel.
+
+2 - Included some script to deploy this app on minikube
 
 
 ## Running Stubs(Mock)
