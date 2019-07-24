@@ -6,21 +6,29 @@ import br.com.fredericci.person.repository.PersonRepository;
 import br.com.six2six.fixturefactory.Fixture;
 import br.com.six2six.fixturefactory.Rule;
 import java.io.IOException;
+import java.util.UUID;
 import java.util.stream.IntStream;
 import javax.annotation.PostConstruct;
+import lombok.extern.java.Log;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+@Log
 @Service
 public class PersonService {
 
 
     private final PersonRepository personRepository;
 
-
     public PersonService(final PersonRepository personRepository) {
         this.personRepository = personRepository;
+
+        Fixture.of(Person.class).addTemplate("valid", new Rule() {{
+            add("id", random(UUID.class));
+            add("name", firstName());
+            add("surname", lastName());
+        }});
     }
 
 
@@ -32,21 +40,19 @@ public class PersonService {
         return this.personRepository.save(person);
     }
 
+    public Person findById(String personId) {
+        return this.personRepository.findById(UUID.fromString(personId)).orElseThrow(() -> new NotFoundException());
+    }
+
     @PostConstruct
     public void loadDatabase() throws IOException {
 
-        Fixture.of(Person.class).addTemplate("valid", new Rule() {{
-            add("id", random(Long.class));
-            add("name", firstName());
-            add("surname", lastName());
-        }});
+        IntStream.range(1, 10).forEach((number) -> {
+            final Person person = this.create(Fixture.from(Person.class).gimme("valid"));
+            log.info("New Person: " + person.toString());
+        });
 
-        IntStream.range(1, 10).forEach((number) -> personRepository.save(Fixture.from(Person.class).gimme("valid")));
 
-    }
-
-    public Person findById(Long personId) {
-        return this.personRepository.findById(personId).orElseThrow(() -> new NotFoundException());
     }
 }
 

@@ -2,7 +2,7 @@ description: Represents a successful scenario of getting a person by id
 
 request:
   method: GET
-  url: /person/1
+  url: /person/997c383e-c87c-4ded-b96c-778dd382311d
 
 response:
   status: 200
@@ -10,7 +10,7 @@ response:
     {
        "surname":"Fredericci",
        "name":"Dennys",
-       "id":1
+       "id":"997c383e-c87c-4ded-b96c-778dd382311d"
     }
 
 

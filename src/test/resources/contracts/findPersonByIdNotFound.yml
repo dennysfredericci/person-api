@@ -2,7 +2,7 @@ description: Represents a successful scenario of getting a person by id
 
 request:
   method: GET
-  url: /person/2
+  url: /person/581100ce-d495-45f7-967c-2a129b96b3a5
 
 response:
   status: 404
