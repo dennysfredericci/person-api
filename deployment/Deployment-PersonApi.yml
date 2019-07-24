@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: person-api
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: person-api
+    spec:
+      containers:
+        - name: person-api
+          image: fredericci/person-api:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: postgresql
+            - name: DATASOURCE_URL
+              value: jdbc:postgresql://postgres-service:5432/postgres
+            - name: DATABASE_USER
+              value: postgres
+            - name: DATABASE_PASSWORD
+              value: postgres
